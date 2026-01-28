@@ -4,8 +4,10 @@ const prisma = new PrismaClient();
 
 async function main() {
   // Create Companies
-  const company1 = await prisma.company.create({
-    data: {
+  const company1 = await prisma.company.upsert({
+    where: { name: 'LTI' },
+    update: {},
+    create: {
       name: 'LTI',
     },
   });
@@ -69,8 +71,10 @@ async function main() {
   });
 
   // Create Candidates
-  const candidate1 = await prisma.candidate.create({
-    data: {
+  const candidate1 = await prisma.candidate.upsert({
+    where: { email: 'john.doe@gmail.com' },
+    update: {},
+    create: {
       firstName: 'John',
       lastName: 'Doe',
       email: 'john.doe@gmail.com',
@@ -109,8 +113,10 @@ async function main() {
     },
   });
 
-  const candidate2 = await prisma.candidate.create({
-    data: {
+  const candidate2 = await prisma.candidate.upsert({
+    where: { email: 'jane.smith@gmail.com' },
+    update: {},
+    create: {
       firstName: 'Jane',
       lastName: 'Smith',
       email: 'jane.smith@gmail.com',
@@ -149,8 +155,10 @@ async function main() {
     },
   });
 
-  const candidate3 = await prisma.candidate.create({
-    data: {
+  const candidate3 = await prisma.candidate.upsert({
+    where: { email: 'carlos.garcia@example.com' },
+    update: {},
+    create: {
       firstName: 'Carlos',
       lastName: 'García',
       email: 'carlos.garcia@example.com',
@@ -211,7 +219,7 @@ async function main() {
     },
   });
 
-  
+
 
   // Create Interview Steps
   const interviewStep1 = await prisma.interviewStep.create({
@@ -242,8 +250,10 @@ async function main() {
   });
 
   // Create Employees
-  const employee1 = await prisma.employee.create({
-    data: {
+  const employee1 = await prisma.employee.upsert({
+    where: { email: 'alice.johnson@lti.com' },
+    update: {},
+    create: {
       companyId: company1.id,
       name: 'Alice Johnson',
       email: 'alice.johnson@lti.com',
@@ -251,8 +261,10 @@ async function main() {
     },
   });
 
-  const employee2 = await prisma.employee.create({
-    data: {
+  const employee2 = await prisma.employee.upsert({
+    where: { email: 'bob.miller@lti.com' },
+    update: {},
+    create: {
       companyId: company1.id,
       name: 'Bob Miller',
       email: 'bob.miller@lti.com',
